@@ -39,7 +39,7 @@ Manager: [
 };
 
 const secureAxios = axios.create({
-  baseURL: 'https://localhost:7049', // Ensure the base URL is correct
+  baseURL: 'https://opsvisionbe.integrator-orange.com', // Ensure the base URL is correct
 });
 
 // Add request interceptor to check for role-based access and authorization token

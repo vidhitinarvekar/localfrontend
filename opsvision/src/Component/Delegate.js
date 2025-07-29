@@ -53,7 +53,7 @@ export default function Delegate() {
         return;
       }
       try {
-        const response = await axios.get(`https://localhost:7049/api/ProjectFteEmployee/search`, {
+        const response = await axios.get(`https://opsvisionbe.integrator-orange.com/api/ProjectFteEmployee/search`, {
           params: { searchTerm: searchQuery },
         });
         setSearchResults(response.data);
@@ -83,7 +83,7 @@ export default function Delegate() {
   const fetchRemainingHrs = async (projectTaskId) => {
     try {
       const response = await axios.get(
-        `https://localhost:7049/api/ProjectManagement/user-projects/task/${projectTaskId}`,
+        `https://opsvisionbe.integrator-orange.com/api/ProjectManagement/user-projects/task/${projectTaskId}`,
         {
           headers: {
             projecttaskid: projectTaskId,
@@ -113,7 +113,7 @@ export default function Delegate() {
   const fetchProjectFTEs = async (projectTaskId) => {
     
     try {
-      const response = await axios.get('https://localhost:7049/api/ProjectFteEmployee/manager-assignments', {
+      const response = await axios.get('https://opsvisionbe.integrator-orange.com/api/ProjectFteEmployee/manager-assignments', {
         headers: {
           projectTaskId: projectTaskId  // this would send it as ?projectTaskId=... in URL
         }
@@ -171,7 +171,7 @@ committedMap[emp.staffId] = committedHours;
 
   const fetchCommittedHours = async (projectTaskId, staffId) => {
     try {
-      const response = await axios.get(`https://localhost:7049/api/ProjectManagement/get-committed-hours`, {
+      const response = await axios.get(`https://opsvisionbe.integrator-orange.com/api/ProjectManagement/get-committed-hours`, {
         params: { projectTaskId, staffId }
       });
   
@@ -257,7 +257,7 @@ const handleSaveAllNewEmployees = async () => {
       }
        const failedStaff=[];
       for (const payload of payloadList) {
-       try{ await axios.post(`https://localhost:7049/api/ProjectFteEmployee/allocate`, payload);
+       try{ await axios.post(`https://opsvisionbe.integrator-orange.com/api/ProjectFteEmployee/allocate`, payload);
       }catch (err) {
           console.error(`❌ Failed to save for staffId ${payload.staffId}:`, err);
           failedStaff.push(payload.staffId);
@@ -330,7 +330,7 @@ const handleSaveAllNewEmployees = async () => {
         ]
       };
   
-      await axios.put("https://localhost:7049/api/ProjectFteEmployee/update", payload);
+      await axios.put("https://opsvisionbe.integrator-orange.com/api/ProjectFteEmployee/update", payload);
   
       const freshList = await fetchProjectFTEs(projectTaskId);
       const freshEmp = freshList.find(emp => emp.staffId === staffIdToUpdate);
@@ -396,7 +396,7 @@ const handleSaveAllNewEmployees = async () => {
 
     // Perform all updates
     for (const payload of payloadList) {
-      await axios.put(`https://localhost:7049/api/ProjectFteEmployee/update`, payload);
+      await axios.put(`https://opsvisionbe.integrator-orange.com/api/ProjectFteEmployee/update`, payload);
       await fetchProjectFTEs(projectTaskId);
     }
 
@@ -416,7 +416,7 @@ const handleSaveAllNewEmployees = async () => {
   const handleDeleteFte = async (staffIdToDelete) => {
     const delegatedBy = parseInt(localStorage.getItem('staffId'));
     try {
-      await axios.delete(`https://localhost:7049/api/ProjectFteEmployee/deletenew/${projectTaskId}/${staffIdToDelete}`, {
+      await axios.delete(`https://opsvisionbe.integrator-orange.com/api/ProjectFteEmployee/deletenew/${projectTaskId}/${staffIdToDelete}`, {
         data: {
           delegatedBy: delegatedBy
         }

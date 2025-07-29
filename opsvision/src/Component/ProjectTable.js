@@ -127,7 +127,7 @@ useEffect(() => {
       let data = [];
 
       if (role === "VerticalLead") {
-        const response = await fetch(`https://localhost:7049/api/ProjectFte/all`, {
+        const response = await fetch(`https://opsvisionbe.integrator-orange.com/api/ProjectFte/all`, {
           headers: {
             'accept': '*/*',
             'Authorization': `Bearer ${token}`,
@@ -137,7 +137,7 @@ useEffect(() => {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         data = await response.json();
       } else {
-        const response = await fetch(`https://localhost:7049/api/ProjectFte/by-owner/${staffId}`, {
+        const response = await fetch(`https://opsvisionbe.integrator-orange.com/api/ProjectFte/by-owner/${staffId}`, {
           headers: {
             'accept': '*/*',
             'Authorization': `Bearer ${token}`,
@@ -223,7 +223,7 @@ const fetchData = async () => {
     let data = [];
 
     if (role === "VerticalLead") {
-      const response = await fetch(`https://localhost:7049/api/ProjectFte/all`, {
+      const response = await fetch(`https://opsvisionbe.integrator-orange.com/api/ProjectFte/all`, {
         headers: {
           'accept': '*/*',
           'Authorization': `Bearer ${token}`,
@@ -232,7 +232,7 @@ const fetchData = async () => {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       data = await response.json();
     } else {
-      const response = await fetch(`https://localhost:7049/api/ProjectFte/by-owner/${staffId}`, {
+      const response = await fetch(`https://opsvisionbe.integrator-orange.com/api/ProjectFte/by-owner/${staffId}`, {
         headers: {
           'accept': '*/*',
           'Authorization': `Bearer ${token}`,
@@ -313,7 +313,7 @@ const fetchData = async () => {
   const handleOpenAddTask = async (primeCode) => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch("https://localhost:7049/api/ProjectFte/alltask", {
+    const res = await fetch("https://opsvisionbe.integrator-orange.com/api/ProjectFte/alltask", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -337,7 +337,7 @@ const fetchData = async () => {
 
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch("https://localhost:7049/api/ProjectFte/assign-task", {
+    const res = await fetch("https://opsvisionbe.integrator-orange.com/api/ProjectFte/assign-task", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -397,7 +397,7 @@ const fetchData = async () => {
     const staffId = localStorage.getItem("staffId");
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`https://localhost:7049/api/ProjectFte/by-owner/${staffId}`, {
+    const response = await fetch(`https://opsvisionbe.integrator-orange.com/api/ProjectFte/by-owner/${staffId}`, {
       headers: {
         'accept': '*/*',
         'Authorization': `Bearer ${token}`,
@@ -439,7 +439,7 @@ const fetchData = async () => {
 const fetchManagerList = async () => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch("https://localhost:7049/api/ProjectManagement/search-managers", {
+    const res = await fetch("https://opsvisionbe.integrator-orange.com/api/ProjectManagement/search-managers", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -457,7 +457,7 @@ const handleOwnerUpdate = async (projectId, newStaffId, primeCode) => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("https://localhost:7049/api/ProjectManagement/update-projectowner-staff", {
+    const res = await fetch("https://opsvisionbe.integrator-orange.com/api/ProjectManagement/update-projectowner-staff", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -572,8 +572,8 @@ const handleFteSave = async (primeCode, task) => {
 
   const isNew = task.allocatedFte === 0;
   const endpoint = isNew
-    ? "https://localhost:7049/api/ProjectFte/allocate"
-    : "https://localhost:7049/api/ProjectFte/update";
+    ? "https://opsvisionbe.integrator-orange.com/api/ProjectFte/allocate"
+    : "https://opsvisionbe.integrator-orange.com/api/ProjectFte/update";
   const method = isNew ? "POST" : "PUT";
 
   try {
@@ -614,7 +614,7 @@ const reloadProjectByPrimeCode = async (primeCode) => {
   const token = localStorage.getItem("token");
 
   try {
-    const res = await fetch(`https://localhost:7049/api/ProjectFte/by-owner/${staffId}`, {
+    const res = await fetch(`https://opsvisionbe.integrator-orange.com/api/ProjectFte/by-owner/${staffId}`, {
       headers: {
         'accept': '*/*',
         'Authorization': `Bearer ${token}`,
